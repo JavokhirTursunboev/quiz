@@ -21,7 +21,12 @@ function App() {
   ].reverse();
   return (
     <div className="app">
-      <div className="main">Main</div>
+      <div className="main">
+        <div className="top">
+          <div className="timer">30</div>
+        </div>
+        <div className="bottom">asnwer and questions</div>
+      </div>
       <div className="pyramid">
         <ul className="moneyList">
           {moneyPyramid.map((m) => {
