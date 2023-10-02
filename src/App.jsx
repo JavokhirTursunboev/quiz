@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import "./app.css";
 import Trivia from "./components/Trivia";
+import { data } from "./data";
+
+// context api
+
+const apiContext = createContext();
+export const useGlobalContext = () => useContext(apiContext);
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [stop, setStop] = useState(false);
   const moneyPyramid = [
     { id: 1, amount: "$ 100" },
     { id: 2, amount: "$ 200" },
@@ -21,34 +28,38 @@ function App() {
     { id: 15, amount: "$ 1.000.000" },
   ].reverse();
   return (
-    <div className="app">
-      <div className="main">
-        <div className="top">
-          <div className="timer">30</div>
+    <apiContext.Provider
+      value={{ data, setStop, questionNumber, setQuestionNumber }}
+    >
+      <div className="app">
+        <div className="main">
+          <div className="top">
+            <div className="timer">30</div>
+          </div>
+          <div className="bottom">
+            <Trivia />
+          </div>
         </div>
-        <div className="bottom">
-          <Trivia />
+        <div className="pyramid">
+          <ul className="moneyList">
+            {moneyPyramid.map((m) => {
+              return (
+                <li
+                  className={
+                    questionNumber === m.id
+                      ? "moneyListItem active"
+                      : "moneyListItem"
+                  }
+                >
+                  <span className="moneyListItemNumber">{m.id}</span>
+                  <span className="moneyListItemAmount">{m.amount}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
-      <div className="pyramid">
-        <ul className="moneyList">
-          {moneyPyramid.map((m) => {
-            return (
-              <li
-                className={
-                  questionNumber === m.id
-                    ? "moneyListItem active"
-                    : "moneyListItem"
-                }
-              >
-                <span className="moneyListItemNumber">{m.id}</span>
-                <span className="moneyListItemAmount">{m.amount}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+    </apiContext.Provider>
   );
 }
 
