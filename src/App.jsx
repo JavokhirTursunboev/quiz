@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useState, useContext, createContext, useEffect } from "react";
 import "./app.css";
+import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
 import { data } from "./data";
 
@@ -49,7 +50,9 @@ function App() {
           ) : (
             <>
               <div className="top">
-                <div className="timer">30</div>
+                <div className="timer">
+                  <Timer />
+                </div>
               </div>
               <div className="bottom">
                 <Trivia />
