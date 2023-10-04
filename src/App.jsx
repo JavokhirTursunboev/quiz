@@ -15,6 +15,7 @@ function App() {
   const [stop, setStop] = useState(false);
   const [earn, setEarn] = useState("$ 0");
   const [user, setUser] = useState(null);
+  const [showLeft, setShowLeft] = useState(false);
   const moneyPyramid = useMemo(
     () =>
       [
@@ -41,6 +42,10 @@ function App() {
     questionNumber > 1 &&
       setEarn(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
   });
+
+  const handleSide = () => {
+    setShowLeft(true);
+  };
   return (
     <apiContext.Provider
       value={{ data, setStop, questionNumber, setQuestionNumber, setUser }}
@@ -48,10 +53,7 @@ function App() {
       <div className="app">
         {user ? (
           <>
-            <div
-              className="main"
-             
-            >
+            <div className="main">
               {stop ? (
                 <h1 className="earnText">
                   {user.toUpperCase()} eared: {earn}
@@ -59,6 +61,12 @@ function App() {
               ) : (
                 <>
                   <div className="top">
+                    <div className="mobileButton" onClick={handleSide}>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                     <div className="timer">
                       <Timer />
                     </div>
@@ -69,25 +77,30 @@ function App() {
                 </>
               )}
             </div>
-            <div className="pyramid">
-              <ul className="moneyList">
-                {moneyPyramid.map((m) => {
-                  return (
-                    <li
-                      key={m.id}
-                      className={
-                        questionNumber === m.id
-                          ? "moneyListItem active"
-                          : "moneyListItem"
-                      }
-                    >
-                      <span className="moneyListItemNumber">{m.id}</span>
-                      <span className="moneyListItemAmount">{m.amount}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            {showLeft && (
+              <div className="pyramid">
+                <button className="exit" onClick={() => setShowLeft(false)}>
+                  x
+                </button>
+                <ul className="moneyList">
+                  {moneyPyramid.map((m) => {
+                    return (
+                      <li
+                        key={m.id}
+                        className={
+                          questionNumber === m.id
+                            ? "moneyListItem active"
+                            : "moneyListItem"
+                        }
+                      >
+                        <span className="moneyListItemNumber">{m.id}</span>
+                        <span className="moneyListItemAmount">{m.amount}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
           </>
         ) : (
           <Start />
