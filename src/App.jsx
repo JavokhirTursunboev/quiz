@@ -44,7 +44,7 @@ function App() {
   });
 
   const handleSide = () => {
-    setShowLeft(true);
+    setShowLeft(!showLeft);
   };
   return (
     <apiContext.Provider
