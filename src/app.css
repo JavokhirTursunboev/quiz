@@ -79,8 +79,7 @@
   background: linear-gradient(#0e0124, #22074d);
   cursor: pointer;
 }
-.answer:hover,
-.answer.active {
+.answer:hover {
   background: mediumblue;
 }
 

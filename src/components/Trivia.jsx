@@ -36,7 +36,7 @@ const Trivia = () => {
 
   const handleClick = (a) => {
     setSelectAnswer(a);
-    setClassName("answer active");
+    setClassName("answer");
     // deley
 
     delay(3000, () =>
