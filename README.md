@@ -1,6 +1,6 @@
 # PlayForAMillion Website
 
-![Website Preview](https://your-image-url.com/preview.png)
+![Website Preview]()
 
 ## Introduction
 
@@ -23,4 +23,4 @@ To run this project locally or contribute to it, follow these steps:
 
    ```bash
    git clone https://github.com/JavokhirTursunboev/quiz
-   cd playforamillion
+   cd quiz
