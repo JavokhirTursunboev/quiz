@@ -5,7 +5,7 @@ import Start from "./components/Start";
 import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
 import { data } from "./data";
-
+import backg from "./assets/img/bg.jpg";
 // context api
 
 const apiContext = createContext();
@@ -48,7 +48,10 @@ function App() {
       <div className="app">
         {user ? (
           <>
-            <div className="main">
+            <div
+              className="main"
+             
+            >
               {stop ? (
                 <h1 className="earnText">
                   {user.toUpperCase()} eared: {earn}
