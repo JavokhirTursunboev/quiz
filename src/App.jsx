@@ -10,6 +10,7 @@ export const useGlobalContext = () => useContext(apiContext);
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
+  const [earn, setEarn] = useState("$ 0");
   const moneyPyramid = [
     { id: 1, amount: "$ 100" },
     { id: 2, amount: "$ 200" },
@@ -33,12 +34,18 @@ function App() {
     >
       <div className="app">
         <div className="main">
-          <div className="top">
-            <div className="timer">30</div>
-          </div>
-          <div className="bottom">
-            <Trivia />
-          </div>
+          {stop ? (
+            <h1>You eared: {earn}</h1>
+          ) : (
+            <>
+              <div className="top">
+                <div className="timer">30</div>
+              </div>
+              <div className="bottom">
+                <Trivia />
+              </div>
+            </>
+          )}
         </div>
         <div className="pyramid">
           <ul className="moneyList">
