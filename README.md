@@ -1,8 +1,26 @@
-# React + Vite
+# PlayForAMillion Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Website Preview](https://your-image-url.com/preview.png)
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Welcome to the PlayForAMillion website! This website is designed to provide users with a fun and engaging quiz game experience where they can test their knowledge and win virtual money.
+
+- Live Website: [PlayForAMillion.netlify.app](https://playforamillion.netlify.app)
+
+## Features
+
+- Engaging quiz game with multiple questions and levels.
+- Virtual money earning as you progress through the game.
+- Responsive design for a seamless experience on various devices.
+- Easy-to-use interface for players of all ages.
+
+## Getting Started
+
+To run this project locally or contribute to it, follow these steps:
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/JavokhirTursunboev/quiz
+   cd playforamillion
