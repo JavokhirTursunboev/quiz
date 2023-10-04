@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useState, useContext, createContext, useEffect } from "react";
 import "./app.css";
+import Start from "./components/Start";
 import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
 import { data } from "./data";
@@ -13,6 +14,7 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earn, setEarn] = useState("$ 0");
+  const [user, setUser] = useState(null);
   const moneyPyramid = useMemo(
     () =>
       [
@@ -41,43 +43,52 @@ function App() {
   });
   return (
     <apiContext.Provider
-      value={{ data, setStop, questionNumber, setQuestionNumber }}
+      value={{ data, setStop, questionNumber, setQuestionNumber, setUser }}
     >
       <div className="app">
-        <div className="main">
-          {stop ? (
-            <h1 className="earnText">You eared: {earn}</h1>
-          ) : (
-            <>
-              <div className="top">
-                <div className="timer">
-                  <Timer />
-                </div>
-              </div>
-              <div className="bottom">
-                <Trivia />
-              </div>
-            </>
-          )}
-        </div>
-        <div className="pyramid">
-          <ul className="moneyList">
-            {moneyPyramid.map((m) => {
-              return (
-                <li
-                  className={
-                    questionNumber === m.id
-                      ? "moneyListItem active"
-                      : "moneyListItem"
-                  }
-                >
-                  <span className="moneyListItemNumber">{m.id}</span>
-                  <span className="moneyListItemAmount">{m.amount}</span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        {user ? (
+          <>
+            <div className="main">
+              {stop ? (
+                <h1 className="earnText">
+                  {user.toUpperCase()} eared: {earn}
+                </h1>
+              ) : (
+                <>
+                  <div className="top">
+                    <div className="timer">
+                      <Timer />
+                    </div>
+                  </div>
+                  <div className="bottom">
+                    <Trivia />
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="pyramid">
+              <ul className="moneyList">
+                {moneyPyramid.map((m) => {
+                  return (
+                    <li
+                      key={m.id}
+                      className={
+                        questionNumber === m.id
+                          ? "moneyListItem active"
+                          : "moneyListItem"
+                      }
+                    >
+                      <span className="moneyListItemNumber">{m.id}</span>
+                      <span className="moneyListItemAmount">{m.amount}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </>
+        ) : (
+          <Start />
+        )}
       </div>
     </apiContext.Provider>
   );

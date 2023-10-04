@@ -1,13 +1,28 @@
 import { useGlobalContext } from "../App";
 import { useState, useEffect } from "react";
 import "../app.css";
+import useSound from "use-sound";
+import play from "../assets/music/play.wav";
+import correct from "../assets/music/correct.wav";
+import wrong from "../assets/music/wrong.wav";
+
+
 const Trivia = () => {
   const { data, setStop, questionNumber, setQuestionNumber } =
     useGlobalContext();
   const [question, setQuestion] = useState(null);
   const [selectAnswer, setSelectAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
- 
+  //  sounds
+  const [letPlay] = useSound(play);
+  const [correctAnswer] = useSound(correct);
+  const [wrongAnswer] = useSound(wrong);
+
+
+  useEffect(() => {
+    letPlay();
+  }, [letPlay]);
+
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
   }, [data, questionNumber]);
@@ -29,12 +44,18 @@ const Trivia = () => {
     );
 
     // change question
-    delay(6000, () => {
+    delay(5000, () => {
       if (a.correct) {
-        setQuestionNumber((prev) => prev + 1);
-        setSelectAnswer(null);
+        correctAnswer();
+        delay(1000, () => {
+          setQuestionNumber((prev) => prev + 1);
+          setSelectAnswer(null);
+        });
       } else {
-        setStop(true);
+        wrongAnswer();
+        delay(1000, () => {
+          setStop(true);
+        });
       }
     });
   };

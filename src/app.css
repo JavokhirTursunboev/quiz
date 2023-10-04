@@ -153,3 +153,36 @@
   bottom: 0;
   margin: auto;
 }
+
+.start {
+  width: 250px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.startInput {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+}
+.startInput:focus {
+  outline: none;
+}
+.startButton {
+  width: 50%;
+ 
+  height: 30px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
